@@ -37,7 +37,7 @@ function package_download() {
 echo "Installing libraoffice $LIBRAOFFICE_VERSION" | arrow
 
 # we need this directory, it's our destination
-gm_lib_path=$BUILD_DIR/vendor/libraoffice
+lb_lib_path=$BUILD_DIR/vendor/libraoffice
 mkdir -p $lb_lib_path
 
 # vendor directories
@@ -47,7 +47,7 @@ package_download "${REMOTE_PATH}" "${VENDORED_LIBRAOFFICE}"
 mkdir -p "$BUILD_DIR/bin/"
 cp $VENDORED_LIBRAOFFICE/bin/* "$BUILD_DIR/bin/"
 
-cp -R $VENDORED_LIBRAOFFICE/* $gm_lib_path
+cp -R $VENDORED_LIBRAOFFICE/* $lb_lib_path
 
 echo "Installation completed" | indent
 
