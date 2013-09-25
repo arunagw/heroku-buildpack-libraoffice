@@ -25,12 +25,11 @@ function mktmpdir() {
 }
 
 function package_download() {
-  local remote location
-  remote="$1"
-  location="$2"
+  local location
+  location="$1"
 
   mkdir -p $location
-  package="http://s3.amazonaws.com/${S3_BUCKET}/${remote}"
+  package="http://heroku-buildpack-libraoffice.s3.amazonaws.com/LibreOffice_4.1.0_Linux_x86-64_deb.tar.gz"
   curl $package -s -o - | tar xzf - -C $location
 }
 
@@ -42,7 +41,7 @@ mkdir -p $lb_lib_path
 
 # vendor directories
 VENDORED_LIBRAOFFICE="$(mktmpdir libraoffice)"
-package_download "${REMOTE_PATH}" "${VENDORED_LIBRAOFFICE}"
+package_download "${VENDORED_LIBRAOFFICE}"
 
 mkdir -p "$BUILD_DIR/bin/"
 cp $VENDORED_LIBRAOFFICE/bin/* "$BUILD_DIR/bin/"
